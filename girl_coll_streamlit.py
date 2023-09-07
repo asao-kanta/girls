@@ -37,10 +37,7 @@ headers = {"User-Agent":
            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36"}
 urls = csv_file_body.split()
 if "urls" not in state:
-    state.urls = []
-    for i in range(len(urls)):
-        st.write(urls[i])
-        state.urls.append(urls[i])
+    state.urls = urls
 if "index" not in state:
     state.index = 0
 logger.info(state.urls)
