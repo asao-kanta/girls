@@ -3,20 +3,42 @@ from bs4 import BeautifulSoup
 import pandas as pd
 from datetime import date, timedelta, datetime
 import numpy as np
+import boto3
+import os
+from io import StringIO
 
 import streamlit as st
 from streamlit_modal import Modal
 from streamlit import session_state as state
 
+access_key = os.environ("AWS_ACCESS_KEY")
+secret_key = os.environ("AWS_SECRET_ACCESS_KEY")
+client = boto3.client('s3')
+
+Filename = 'url.csv'
+Bucket = 'arabum-girls'
+client = boto3.client(
+    's3',
+    aws_access_key_id=access_key,
+    aws_secret_access_key=secret_key,
+    region_name='ap-northeast-1'
+)
+
+csv = client.get_object(Bucket=Bucket, Key=Filename)
+csv_buf = StringIO()
+print(csv)
+csv_file = client.get_object(Bucket=Bucket, Key=Filename)
+csv_file_body = csv_file["Body"].read().decode("utf-8")
+# urls = pd.read_csv(csv, index_col=0, header=None)
+urls = pd.read_csv(StringIO(csv_file_body), index_col=0, header=None)
 headers = {"User-Agent":
            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36"}
-urls = pd.read_csv('url.csv', index_col=0, header=None)
-print(urls)
+
 if "urls" not in state:
     state.urls = [url for url in [urls.index][0]]
 if "index" not in state:
     state.index = 0
-
+print(state.urls)
 names = []
 df = pd.DataFrame()
 
@@ -74,7 +96,9 @@ if modal.is_open():
             state.urls.append("")
         if st.button("close"):
             pd.DataFrame(state.urls).to_csv(
-                'url.csv', header=False, index=False)
+                csv_buf, header=False, index=False)
+            client.put_object(Bucket=Bucket,
+                              Body=csv_buf.getvalue(), Key=Filename)
             modal.close()
 
 
