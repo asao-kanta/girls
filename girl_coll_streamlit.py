@@ -59,8 +59,8 @@ for j in range(1, 7):
     shukkin_day.append(d+td)
 st.write(urls)
 for i in range(len(state.urls)):
-    if url == "" or url is None or type(url) != str or url == "nan" or url == "NoneType" or type(url) == "NoneType":
-        continue
+    # if url == "" or url is None or type(url) != str or url == "nan" or url == "NoneType" or type(url) == "NoneType":
+    #     continue
     html = requests.get(state.urls[i], headers=headers)
     soup = BeautifulSoup(html.content, 'html.parser')
 
