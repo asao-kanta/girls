@@ -30,27 +30,16 @@ client = boto3.client(
 
 csv = client.get_object(Bucket=Bucket, Key=Filename)
 csv_buf = StringIO()
-# logger.info(csv)
 
 csv_file = client.get_object(Bucket=Bucket, Key=Filename)
-st.write(csv_file)
 csv_file_body = csv_file["Body"].read().decode("utf-8")
-st.write(csv_file_body)
-st.write(csv_file_body.split())
-st.write(len(csv_file_body.split()))
-st.write(csv_file_body.split()[0])
-# print(type(csv_file_body))
-
-# urls = pd.read_csv(csv, index_col=0, header=None)
-# urls = pd.read_csv(StringIO(csv_file_body), index_col=0, header=None)
-# st.write(urls)
 headers = {"User-Agent":
            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36"}
-
+urls = csv_file_body.split()
 if "urls" not in state:
-    for url in csv_file_body.split():
-        st.write(url)
-    state.urls = [url for url in csv_file_body.split()]
+    state.urls = []
+    for i in range(len(urls)):
+        state.urls.append(urls[i])
 if "index" not in state:
     state.index = 0
 logger.info(state.urls)
