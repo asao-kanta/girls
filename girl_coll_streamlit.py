@@ -39,7 +39,7 @@ urls = csv_file_body.split()
 if "urls" not in state:
     state.urls = []
     for i in range(len(urls)):
-        st.write(urls)
+        st.write(urls[i])
         state.urls.append(urls[i])
 if "index" not in state:
     state.index = 0
@@ -59,7 +59,7 @@ for j in range(1, 7):
     shukkin_day.append(d+td)
 st.write(urls)
 for url,i in enumerate(state.urls):
-    print(type(url))
+    st.write(url)
     if url == "" or url is None or type(url) != str or url == "nan" or url == "NoneType" or type(url) == "NoneType":
         continue
     html = requests.get(url, headers=headers)
