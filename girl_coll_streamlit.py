@@ -26,7 +26,7 @@ client = boto3.client(
 
 csv = client.get_object(Bucket=Bucket, Key=Filename)
 csv_buf = StringIO()
-print(csv)
+print("cvs",csv)
 csv_file = client.get_object(Bucket=Bucket, Key=Filename)
 csv_file_body = csv_file["Body"].read().decode("utf-8")
 # urls = pd.read_csv(csv, index_col=0, header=None)
@@ -38,7 +38,7 @@ if "urls" not in state:
     state.urls = [url for url in [urls.index][0]]
 if "index" not in state:
     state.index = 0
-print(state.urls)
+print("state.urls",state.urls)
 names = []
 df = pd.DataFrame()
 
