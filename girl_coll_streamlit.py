@@ -56,7 +56,7 @@ for j in range(1, 7):
     # 基準日を 2020年2月28日とする
     d = date(year, month, day)
     shukkin_day.append(d+td)
-
+st.write(urls)
 for url,i in enumerate(state.urls):
     print(type(url))
     if url == "" or url is None or type(url) != str or url == "nan" or url == "NoneType" or type(url) == "NoneType":
