@@ -10,6 +10,9 @@ from io import StringIO
 import streamlit as st
 from streamlit_modal import Modal
 from streamlit import session_state as state
+from logging import getLogger
+logger = getLogger(__name__)
+logger.info('message')
 
 access_key = os.environ("AWS_ACCESS_KEY")
 secret_key = os.environ("AWS_SECRET_ACCESS_KEY")
@@ -26,7 +29,7 @@ client = boto3.client(
 
 csv = client.get_object(Bucket=Bucket, Key=Filename)
 csv_buf = StringIO()
-print(csv)
+logger.info(csv)
 csv_file = client.get_object(Bucket=Bucket, Key=Filename)
 csv_file_body = csv_file["Body"].read().decode("utf-8")
 # urls = pd.read_csv(csv, index_col=0, header=None)
@@ -38,7 +41,7 @@ if "urls" not in state:
     state.urls = [url for url in [urls.index][0]]
 if "index" not in state:
     state.index = 0
-print(state.urls)
+logger.info(state.urls)
 names = []
 df = pd.DataFrame()
 
