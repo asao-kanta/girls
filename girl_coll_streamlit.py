@@ -56,6 +56,7 @@ for j in range(1, 7):
     shukkin_day.append(d+td)
 st.write(urls)
 st.write(state.urls[0])
+st.write(requests.get(state.urls[0], headers=headers))
 for i in range(len(state.urls)):
     # if url == "" or url is None or type(url) != str or url == "nan" or url == "NoneType" or type(url) == "NoneType":
     #     continue
