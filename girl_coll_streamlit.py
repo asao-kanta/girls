@@ -14,8 +14,8 @@ from logging import getLogger
 logger = getLogger(__name__)
 logger.info('message')
 
-access_key = os.environ("AWS_ACCESS_KEY")
-secret_key = os.environ("AWS_SECRET_ACCESS_KEY")
+access_key = os.environ["AWS_ACCESS_KEY"]
+secret_key = os.environ["AWS_SECRET_ACCESS_KEY"]
 client = boto3.client('s3')
 
 Filename = 'url.csv'
