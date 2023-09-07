@@ -58,7 +58,7 @@ for j in range(1, 7):
 
 for i, url in enumerate(state.urls):
     print(type(url))
-    if url == "" or url is None or type(url) != str or url == "nan":
+    if url == "" or url is None or type(url) != str or url == "nan" or url == "NoneType" or type(url) == "NoneType":
         continue
     html = requests.get(url, headers=headers)
     soup = BeautifulSoup(html.content, 'html.parser')
