@@ -39,6 +39,7 @@ urls = csv_file_body.split()
 if "urls" not in state:
     state.urls = []
     for i in range(len(urls)):
+        st.write(urls)
         state.urls.append(urls[i])
 if "index" not in state:
     state.index = 0
