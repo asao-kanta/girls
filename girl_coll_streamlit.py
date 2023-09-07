@@ -48,6 +48,8 @@ headers = {"User-Agent":
            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36"}
 
 if "urls" not in state:
+    for url in csv_file_body.split():
+        st.write(url)
     state.urls = [url for url in csv_file_body.split()]
 if "index" not in state:
     state.index = 0
@@ -66,7 +68,7 @@ for j in range(1, 7):
     d = date(year, month, day)
     shukkin_day.append(d+td)
 
-for i, url in enumerate(state.urls):
+for url,i in enumerate(state.urls)):
     print(type(url))
     if url == "" or url is None or type(url) != str or url == "nan" or url == "NoneType" or type(url) == "NoneType":
         continue
