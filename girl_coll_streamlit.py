@@ -11,8 +11,8 @@ import streamlit as st
 from streamlit_modal import Modal
 from streamlit import session_state as state
 
-access_key = os.environ("AWS_ACCESS_KEY")
-secret_key = os.environ("AWS_SECRET_ACCESS_KEY")
+access_key = os.environ["AWS_ACCESS_KEY"]
+secret_key = os.environ["AWS_SECRET_ACCESS_KEY"]
 client = boto3.client('s3')
 
 Filename = 'url.csv'
