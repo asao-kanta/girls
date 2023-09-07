@@ -32,7 +32,10 @@ csv_buf = StringIO()
 # logger.info(csv)
 
 csv_file = client.get_object(Bucket=Bucket, Key=Filename)
+st.write(csv_file)
 csv_file_body = csv_file["Body"].read().decode("utf-8")
+st.write(csv_file_body)
+
 # urls = pd.read_csv(csv, index_col=0, header=None)
 urls = pd.read_csv(StringIO(csv_file_body), index_col=0, header=None)
 st.write(urls)
