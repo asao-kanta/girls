@@ -16,6 +16,7 @@ logger.info('message')
 
 access_key = os.environ["AWS_ACCESS_KEY"]
 secret_key = os.environ["AWS_SECRET_ACCESS_KEY"]
+
 client = boto3.client('s3')
 
 Filename = 'url.csv'
@@ -35,6 +36,8 @@ csv_file = client.get_object(Bucket=Bucket, Key=Filename)
 st.write(csv_file)
 csv_file_body = csv_file["Body"].read().decode("utf-8")
 st.write(csv_file_body)
+# print(csv_file_body.split())
+# print(type(csv_file_body))
 
 # urls = pd.read_csv(csv, index_col=0, header=None)
 # urls = pd.read_csv(StringIO(csv_file_body), index_col=0, header=None)
@@ -43,7 +46,7 @@ headers = {"User-Agent":
            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36"}
 
 if "urls" not in state:
-    state.urls = [url for url in csv_file_body]
+    state.urls = [url for url in csv_file_body.split()]
 if "index" not in state:
     state.index = 0
 logger.info(state.urls)
