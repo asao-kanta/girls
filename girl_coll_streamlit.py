@@ -58,11 +58,10 @@ for j in range(1, 7):
     d = date(year, month, day)
     shukkin_day.append(d+td)
 st.write(urls)
-for url,i in enumerate(state.urls):
-    st.write(url)
+for i in range(len(state.urls)):
     if url == "" or url is None or type(url) != str or url == "nan" or url == "NoneType" or type(url) == "NoneType":
         continue
-    html = requests.get(url, headers=headers)
+    html = requests.get(state.urls[i], headers=headers)
     soup = BeautifulSoup(html.content, 'html.parser')
 
     names.append(soup.find(id='p_data').find('td').text)
