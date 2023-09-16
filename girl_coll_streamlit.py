@@ -60,7 +60,7 @@ st.write(requests.get('https://www.cityheaven.net/akita/A0503/A050301/loveandlov
 for i in range(len(state.urls)):
     # if url == "" or url is None or type(url) != str or url == "nan" or url == "NoneType" or type(url) == "NoneType":
     #     continue
-    html = requests.get(state.urls[0], headers=headers)
+    html = requests.get('https://www.cityheaven.net/akita/A0503/A050301/loveandlove/girlid-44139795/', headers=headers)
     soup = BeautifulSoup(html.content, 'html.parser')
 
     names.append(soup.find(id='p_data').find('td').text)
