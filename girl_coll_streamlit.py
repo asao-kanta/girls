@@ -56,7 +56,7 @@ for j in range(1, 7):
     shukkin_day.append(d+td)
 st.write(urls)
 st.write(state.urls[0])
-st.write(requests.get(state.urls[0], headers=headers))
+st.write(requests.get('https://www.cityheaven.net/akita/A0503/A050301/loveandlove/girlid-44139795/', headers=headers))
 for i in range(len(state.urls)):
     # if url == "" or url is None or type(url) != str or url == "nan" or url == "NoneType" or type(url) == "NoneType":
     #     continue
